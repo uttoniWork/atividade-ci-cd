@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <title>Angular</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+  <section id="entrada-dados">
+    <form (ngSubmit)="confereDados(altura, peso)" #loginForm="ngForm">
+      <h3>Calcule o seu IMC</h3>
+      <div class="form-filed__label">
+        <label for="altura">Altura: </label>
+        <input class="dados" type="text" [(ngModel)]="altura" id="altura" name="altura"
+          placeholder="Digite sua altura em metros" />
+      </div>
+      <div class="form-filed__label">
+        <label for="peso">Peso: </label>
+        <input class="dados" type="text" [(ngModel)]="peso" id="peso" name="peso"
+          placeholder="Digite seu peso em kilos" />
+      </div>
+
+      <div class="botao-wrapper">
+        <button class="botao" type="submit">Calcular</button>
+      </div>
+    </form>
+    <h3>{{this.resposta}}</h3>
+
+  </section>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+$font-family_1: 'Poppins', sans-serif;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-family_1;
+}
+
+$background-color_1: rgba(255, 127, 234, 0.6);
+
+#entrada-dados {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $background-color_1;
+}
+
+.botao {
+    margin: 10px;
+    height: 30px;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 7px;
+}
+
+.dados {
+    margin-left: 8px;
+    width: 100%;
+    height: 25px;
+}
+
+.form-filed__label {
+    margin-top: 10px;
+}
