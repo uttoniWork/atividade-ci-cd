@@ -2,15 +2,17 @@ pipeline {
     agent any
 
     stages {
+
         stage('Build') {
             steps {
                 echo 'Building..'
                 sh '''
                     cd seminario-C214
-                    npm build
+                    npm install
                    '''
             }
         }
+        
         stage('Test') {
             steps {
                 echo 'Testing..'
@@ -21,6 +23,8 @@ pipeline {
                    archiveArtifacts 'seminario-C214/target/site/'
             }
         }
+
+        
         stage('Notification') {
             steps {
                 echo 'Sending email....'

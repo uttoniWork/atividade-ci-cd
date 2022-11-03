@@ -7,11 +7,20 @@ USER root
 # Executa comandos para instalar o maven
 RUN apt-get update
 
+RUN echo "NODEJS ================================================================================="
 RUN apt-get install -y nodejs
-RUN apt install -y npm
-RUN npm install @angular/cli
+RUN node --version
+
+RUN echo "NPM ================================================================================="
+RUN apt-get install -y npm
+RUN npm --version
+
+RUN echo "ANGULAR ================================================================================="
+RUN npm install -g @angular/cli
+RUN ng --version
 
 # Instalando mailutils
+RUN echo "MAIL UTILS =================================================================================="
 RUN apt-get install -y mailutils
 
 # Limpa arquivos baixados com apt-get
