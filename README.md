@@ -21,7 +21,7 @@ npm install –g @angular/cli
 ### Para clonar e abrir o projeto, siga os seguintes passos no seu terminal:
 
 ```
-git clone https://github.com/CamilaCSilva/Seminario-C214.git
+git clone https://github.com/uttoniWork/atividade-ci-cd.git
 ```
 
 ```
@@ -57,5 +57,5 @@ ng test
 
 ```
 camila.silva@ges.inatel.br
-isadora.bello@gec.inatel.br
+uttoni.brandani@ges.inatel.br 
 ```
