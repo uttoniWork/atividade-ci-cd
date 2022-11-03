@@ -8,9 +8,7 @@ USER root
 RUN apt-get update
 
 RUN apt-get install -y nodejs
-
 RUN apt install -y npm
-
 RUN npm install @angular/cli
 
 # Instalando mailutils
