@@ -7,20 +7,11 @@ USER root
 # Executa comandos para instalar o maven
 RUN apt-get update
 
-RUN apt-get install -y wget
+RUN apt-get install -y nodejs
 
-RUN wget --no-verbose -O /tmp/apache-maven-3.8.6-bin.tar.gz https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+RUN apt install -y npm
 
-RUN tar xzf /tmp/apache-maven-3.8.6-bin.tar.gz -C /opt/
-RUN ln -s /opt/apache-maven-3.8.6 /opt/maven
-RUN ln -s /opt/maven/bin/mvn /usr/local/bin
-RUN rm -f /tmp/apache-maven-3.8.6-bin.tar.gz
-
-# Define uma variavel de ambiente MAVEN_HOME que aponta para o local do maven
-ENV MAVEN_HOME /opt/maven
-
-# chown: comando linux que muda o dono de uma pasta. Nesse caso estamos dando permissao para o usuario jenkins
-RUN chown -R jenkins:jenkins /opt/maven
+RUN npm install @angular/cli
 
 # Instalando mailutils
 RUN apt-get install -y mailutils
