@@ -28,7 +28,7 @@ pipeline {
                     cd scripts/
                     chmod 775 *
                    '''
-                sh './script-email.sh' + 
+                sh './script-email.sh'
             }
         }
     }
