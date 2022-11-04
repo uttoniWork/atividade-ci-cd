@@ -20,7 +20,7 @@ pipeline {
                     cd seminario-C214
                     npm test
                    '''
-                   archiveArtifacts 'seminario-C214/artefato/'
+                //    archiveArtifacts 'seminario-C214/artefato/'
             }
         }
 
