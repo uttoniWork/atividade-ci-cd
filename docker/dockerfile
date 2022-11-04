@@ -7,7 +7,11 @@ USER root
 # Executa comandos para instalar o maven
 RUN apt-get update
 
+RUN echo "CURL =================================================================================="
+RUN apt install curl
+
 RUN echo "NODEJS ================================================================================="
+RUN curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
 RUN apt-get install -y nodejs
 RUN node --version
 
@@ -17,11 +21,18 @@ RUN npm --version
 
 RUN echo "ANGULAR ================================================================================="
 RUN npm install -g @angular/cli
-RUN ng --version
 
 # Instalando mailutils
 RUN echo "MAIL UTILS =================================================================================="
 RUN apt-get install -y mailutils
+
+# Instalando chrome
+RUN echo "CHROME =================================================================================="
+RUN apt-get install -y wget
+RUN wget --help
+
+RUN curl -q -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN apt-get -y install ./google-chrome-stable_current_amd64.deb
 
 # Limpa arquivos baixados com apt-get
 RUN apt-get clean
