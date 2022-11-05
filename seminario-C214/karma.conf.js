@@ -1,16 +1,22 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
+const { report } = require('process');
+const { resourceLimits } = require('worker_threads');
+
 module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-coverage'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      'karma-jasmine',
+      'karma-chrome-launcher',
+      'karma-jasmine-html-reporter',
+      'karma-coverage',
+      'karma-junit-reporter',
+      'karma-sonarqube-unit-reporter',
+      'karma-spec-reporter',
+      '@angular-devkit/build-angular/plugins/karma'
     ],
     client: {
       jasmine: {
@@ -22,22 +28,37 @@ module.exports = function (config) {
       },
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    jasmineHtmlReporter: {
-      suppressAll: true // removes the duplicated traces
-    },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/seminario-c214'),
-      subdir: '.',
-      reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
-      ]
+      dir: require('path').join(__dirname, './coverage/atividade-ci-cd'),
+      reports: ['lcovonly', 'cobertura', 'text-summary'],
+      fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['kjhtml', 'junit', 'spec'],
+    junitReporter: {
+      outputDir: './coverage/atividade-ci-cd', // results will be saved as $outputDir/$browserName.xml
+      outputFile: 'test-results.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
+      suite: 'atividade-ci-cd', // suite will become the package name attribute in xml testsuite element
+      useBrowserName: false, // add browser name to report and classes names,
+      nameFormatter: (browser, result) => {
+        return result.description;
+      }, // function (browser, result) to customize the name attribute in xml testcase element
+      classNameFormatter: (browser, result) => {
+        return result.suite.join('.');
+      } // function (browser, result) to customize the classname attribute in xml testcase element
+    },
+    sonarQubeUnitReporter: {
+      sonarQubeVersion: 'LATEST',
+      outputFile: 'coverage/atividade-ci-cd/ut_report.xml',
+      useBrowserName: false
+    },
+    reporters: config.angularCli && config.angularCli.codeCoverage ? ['coverage'] : ['junit', 'spec', 'kjhtml', 'sonarqubeUnit'],
+    specReporter: {
+      suppressSkipped: true
+    },
     port: 9876,
     colors: true,
-    logLevel: config.LOG_ERROR,
-    autoWatch: false,
+    logLevel: config.LOG_INFO,
+    autoWatch: true,
     singleRun: true,
     browserNoActivityTimeout: 40000,
     browsers: ['ChromeHeadlessCI'],
