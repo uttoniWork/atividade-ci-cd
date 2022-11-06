@@ -11,8 +11,13 @@ RUN echo "CURL =================================================================
 RUN apt install curl
 
 RUN echo "NODEJS ================================================================================="
-RUN curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
-RUN apt-get install -y nodejs
+# RUN curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
+SHELL ["/bin/bash", "--login", "-c"]
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+RUN nvm install 16
+
+# RUN apt-get install -y nodejs
 RUN node --version
 
 RUN echo "NPM ================================================================================="
