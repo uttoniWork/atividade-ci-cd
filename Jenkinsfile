@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    nvironment {
+    environment {
         EMAIL = "uttoni.brandani@ges.inatel.br"
     }
 
