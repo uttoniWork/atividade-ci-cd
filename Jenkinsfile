@@ -13,7 +13,7 @@ pipeline {
                 sh '''
                     cd seminario-C214
                     npm install
-                    ng build
+                    node_modules/.bin/ng build
                    '''
             }
         }
