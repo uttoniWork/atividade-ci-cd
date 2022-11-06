@@ -20,7 +20,7 @@ pipeline {
                     cd seminario-C214
                     npm test
                    '''
-                    archiveArtifacts 'coverage/atividade-ci-cd/ut_report.xml'
+                    archiveArtifacts 'seminario-C214/coverage/atividade-ci-cd/ut_report.xml'
             }
         }
 
