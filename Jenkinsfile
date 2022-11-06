@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    nvironment {
+        EMAIL = "uttoni.brandani@ges.inatel.br"
+    }
+
     stages {
 
         stage('Build') {
@@ -33,7 +37,7 @@ pipeline {
                     chmod 775 *
                     ./script.sh
                    '''
-                sh './script.sh' + 'uttoni.brandani@ges.inatel.br'
+                sh './script.sh ${EMAIL}'
             }
         }
     }
