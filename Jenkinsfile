@@ -35,9 +35,9 @@ pipeline {
                 sh '''
                     cd scripts/
                     chmod 775 *
+                    echo inside jenkinsfile before calling script
+                    ./script.sh ${EMAIL}
                    '''
-                sh 'echo inside jenkinsfile before calling script'
-                sh './script.sh ${EMAIL}'
             }
         }
     }
