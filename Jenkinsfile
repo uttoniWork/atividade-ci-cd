@@ -20,7 +20,7 @@ pipeline {
                     cd seminario-C214
                     npm test
                    '''
-                //    archiveArtifacts 'seminario-C214/artefato/'
+                    archiveArtifacts 'coverage/atividade-ci-cd/ut_report.xml'
             }
         }
 
@@ -33,6 +33,7 @@ pipeline {
                     chmod 775 *
                     ./script.sh
                    '''
+                sh './script.sh' + 'uttoni.brandani@ges.inatel.br'
             }
         }
     }
