@@ -23,7 +23,7 @@ pipeline {
                 echo 'Testing..'
                 sh '''
                     cd seminario-C214
-                    npm test
+                    node_modules/.bin/ng test
                    '''
                     archiveArtifacts 'seminario-C214/coverage/atividade-ci-cd/ut_report.xml'
             }
@@ -36,7 +36,6 @@ pipeline {
                 sh '''
                     cd scripts/
                     chmod 775 *
-                    echo inside jenkinsfile before calling script
                     ./script.sh ${EMAIL}
                    '''
             }
