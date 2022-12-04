@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { empty } from 'rxjs';
+import { Imc } from './models/imc';
+import { ImcService } from './services/imc.service';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +16,28 @@ export class AppComponent {
   imc: number;
   resposta: string;
 
-  constructor() {}
+  imc_ = {} as Imc;
+  cars: Imc[];
 
-  entradaDados(altura: number, peso: number): number {
+  constructor(private imcService: ImcService) {}
 
+  // defini se um carro será criado ou atualizado
+  saveCar(form: NgForm) {
+    this.imcService.saveImc(this.imc_).subscribe(() => {
+      this.cleanForm(form);
+    });
+  }
+
+  cleanForm(form: NgForm) {
+    form.resetForm();
+    this.imc_ = {} as Imc;
+  }
+
+  entradaDados(altura: any, peso: any): number {
     this.imc = parseFloat((peso/(altura*altura)).toFixed(2));
+    this.imc_ = {altura: parseFloat(altura), peso: parseFloat(peso), imc: this.imc};
+    this.imcService.saveImc(this.imc_).subscribe();
+    // console.log(typeof(this.imc_.peso));
     this.limpaCampos();
 
     if(this.imc < 18.5){
