@@ -17,16 +17,8 @@ export class AppComponent {
   resposta: string;
 
   imc_ = {} as Imc;
-  cars: Imc[];
 
   constructor(private imcService: ImcService) {}
-
-  // defini se um carro será criado ou atualizado
-  saveCar(form: NgForm) {
-    this.imcService.saveImc(this.imc_).subscribe(() => {
-      this.cleanForm(form);
-    });
-  }
 
   cleanForm(form: NgForm) {
     form.resetForm();
@@ -37,7 +29,6 @@ export class AppComponent {
     this.imc = parseFloat((peso/(altura*altura)).toFixed(2));
     this.imc_ = {altura: parseFloat(altura), peso: parseFloat(peso), imc: this.imc};
     this.imcService.saveImc(this.imc_).subscribe();
-    // console.log(typeof(this.imc_.peso));
     this.limpaCampos();
 
     if(this.imc < 18.5){

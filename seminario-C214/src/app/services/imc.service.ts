@@ -9,7 +9,7 @@ import { Imc } from '../models/imc';
 })
 export class ImcService {
 
-  url = 'http://localhost:15003/imc'; 
+  url = 'http://10.2.0.99:15015/imc'; 
   
   // injetando o HttpClient
   constructor(private httpClient: HttpClient) { }
